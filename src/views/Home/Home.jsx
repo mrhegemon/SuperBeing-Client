@@ -1,13 +1,26 @@
 import axios from "axios";
 import React, { useState } from 'react';
+import Chat from '../../Chat';
+import backButton from "../../ArrowLeft.svg";
+import axios from "axios";
+import doCORSRequest from "../../ImageRequester";
 import ReactPlayer from 'react-player';
-import Chat from './Chat';
-import doCORSRequest from "./ImageRequester";
+import ListModel from '../../components/Model/ListModel';
 
 const App = () => {
   const [formInputs, setFormInputs] = useState({ agentName: '' });
   const [pageState, setPageState] = useState(0);
   const [agentImage, setAgentImage] = useState(null);
+  const [open, setOpen] = React.useState(false);
+
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   let { agentName } = formInputs;
 
@@ -72,7 +85,11 @@ const App = () => {
           <table>
             <tbody>
             <tr>
-              <td><img src='tree.png' alt='ai' className='ai-img' onClick={() => { startConversationFromImage('tree') }} /></td>
+              <td><img src='tree.png' alt='ai' className='ai-img' onClick={() => {
+                  handleClickOpen();
+                 startConversationFromImage('tree') 
+                }
+                 } /></td>
               <td><img src='sunflower.png' alt='ai' className='ai-img' onClick={() => { startConversationFromImage('sunflower') }} /></td>
               <td><img src='rabbit.png' alt='ai' className='ai-img' onClick={() => { startConversationFromImage('rabbit') }} /></td>
               <td><img src='ant.png' alt='ai' className='ai-img' onClick={() => { startConversationFromImage('ant') }} /></td>
@@ -102,6 +119,11 @@ const App = () => {
           </center>
         </div>
       )}
+
+      <ListModel
+        open={open}
+        handleClose={handleClose}
+      />
     </div>
   );
 };
