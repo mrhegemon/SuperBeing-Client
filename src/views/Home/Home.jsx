@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { useState } from 'react';
 import Chat from '../../Chat';
-import backButton from "../../ArrowLeft.svg";
-import axios from "axios";
 import doCORSRequest from "../../ImageRequester";
 import ReactPlayer from 'react-player';
 import ListModel from '../../components/Model/ListModel';
